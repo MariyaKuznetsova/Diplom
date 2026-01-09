@@ -1,0 +1,30 @@
+{% extends 'diary/base.html' %}
+{% load my_tags %}
+{% block content %}
+<div class="album py-5 bg-body-tertiary">
+    <div class="container">
+        <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 g-3">
+            {% for record in object_list %}
+            {% if user == record.owner %}
+            <div class="col">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <p class="card-text">{{ record.date }}</p>
+                        <p class="card-text">{{ record.contents|truncatechars:100 }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="col">
+                                {% csrf_token %}
+                                <a class="btn btn-primary" href="{% url 'diary:record_detail' record.pk %}" role="article">Посмотреть</a>
+                                <a class="btn btn-primary" href="{% url 'diary:record_update' record.pk %}" role="article">Редактировать</a>
+                                <a class="btn btn-danger" href="{% url 'diary:record_delete' record.pk %}" role="article">Удалить</a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endblock %}
