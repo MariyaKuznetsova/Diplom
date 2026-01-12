@@ -3,7 +3,7 @@ import secrets
 from django.core.mail import send_mail
 from django.shortcuts import get_object_or_404, redirect
 from django.urls import reverse, reverse_lazy
-from django.views.generic import CreateView, UpdateView, DetailView
+from django.views.generic import CreateView, DetailView, UpdateView
 
 from config.settings import EMAIL_HOST_USER
 from users.forms import UserRegisterForm, UserUpdateForm
@@ -12,6 +12,7 @@ from users.models import User
 
 class UserCreateView(CreateView):
     """Контроллер для создания пользователя"""
+
     model = User
     form_class = UserRegisterForm
     success_url = reverse_lazy("users:login")
@@ -34,6 +35,7 @@ class UserCreateView(CreateView):
         )
         return super().form_valid(form)
 
+
 def email_verification(request, token):
     user = get_object_or_404(User, token=token)
     user.is_active = True
@@ -43,6 +45,7 @@ def email_verification(request, token):
 
 class UserUpdateView(UpdateView):
     """Контроллер для редактирования пользователя"""
+
     model = User
     form_class = UserUpdateForm
     template_name = "users/profile_edit.html"
@@ -54,6 +57,7 @@ class UserUpdateView(UpdateView):
 
 class UserDetailView(DetailView):
     """Контроллер для просмотра пользователя"""
+
     model = User
     template_name = "users/profile.html"
 

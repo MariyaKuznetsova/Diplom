@@ -16,23 +16,24 @@ class BootstrapFormMixin:
 
 class RecordForm(BootstrapFormMixin, forms.ModelForm):
     """Форма для создания записи в дневник"""
+
     class Meta:
         model = Record
         fields = ["date", "contents", "image", "owner"]
         widgets = {
-            'date': forms.DateInput(attrs={'type': 'date'}),
+            "date": forms.DateInput(attrs={"type": "date"}),
         }
 
     def __init__(self, *args, **kwargs):
         super(RecordForm, self).__init__(*args, **kwargs)
 
-        self.fields['date'].widget.attrs.update({
-            'class': 'form-control',
-            'placeholder': 'Введите дату вашего события'
-        })
+        self.fields["date"].widget.attrs.update(
+            {"class": "form-control", "placeholder": "Введите дату вашего события"}
+        )
 
-        self.fields['contents'].widget.attrs.update({
-            'class': 'form-control',
-            'placeholder': 'Опишите подробнее, запоминающиеся событие'
-        })
-
+        self.fields["contents"].widget.attrs.update(
+            {
+                "class": "form-control",
+                "placeholder": "Опишите подробнее, запоминающиеся событие",
+            }
+        )

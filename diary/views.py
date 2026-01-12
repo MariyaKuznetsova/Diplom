@@ -1,7 +1,13 @@
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.http import HttpResponseForbidden
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DeleteView, DetailView, ListView, UpdateView
+from django.views.generic import (
+    CreateView,
+    DeleteView,
+    DetailView,
+    ListView,
+    UpdateView,
+)
 
 from diary.forms import RecordForm
 from diary.models import Record
@@ -41,6 +47,7 @@ class RecordDetailView(LoginRequiredMixin, DetailView):
 
 class RecordUpdateView(LoginRequiredMixin, UpdateView):
     """Контроллер по редактированию записи в дневнике"""
+
     model = Record
     form_class = RecordForm
     success_url = reverse_lazy("diary:record_list")
@@ -48,12 +55,15 @@ class RecordUpdateView(LoginRequiredMixin, UpdateView):
     def get_object(self, queryset=None):
         obj = super().get_object(queryset)
         if not obj.owner == self.request.user:
-            return HttpResponseForbidden("У вас нет прав для редактирование этого продукта")
+            return HttpResponseForbidden(
+                "У вас нет прав для редактирование этого продукта"
+            )
         return obj
 
 
 class RecordDeleteView(LoginRequiredMixin, PermissionRequiredMixin, DeleteView):
     """Контроллер по удаления записи в дневнике"""
+
     model = Record
     permission_required = "diary:record_delete"
     success_url = reverse_lazy("diary:record_list")

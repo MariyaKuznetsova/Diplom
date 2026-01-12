@@ -7,6 +7,7 @@ from users.models import User
 
 class UserRegisterForm(BootstrapFormMixin, UserCreationForm):
     """Форма для регистрации пользователя"""
+
     class Meta:
         model = User
         fields = ["email", "password1", "password2"]
@@ -14,6 +15,7 @@ class UserRegisterForm(BootstrapFormMixin, UserCreationForm):
 
 class UserUpdateForm(BootstrapFormMixin, ModelForm):
     """Форма для редактирования пользователя"""
+
     class Meta:
         model = User
         fields = ["nik", "phone_number", "avatar", "country", "city", "myself"]

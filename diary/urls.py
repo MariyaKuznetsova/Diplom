@@ -4,8 +4,8 @@ from diary.apps import DiaryConfig
 from diary.views import (
     RecordCreateView,
     RecordDeleteView,
-    RecordListView,
     RecordDetailView,
+    RecordListView,
     RecordUpdateView,
 )
 

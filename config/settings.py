@@ -12,9 +12,9 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 import os
 from datetime import timedelta
+from pathlib import Path
 
 from dotenv import load_dotenv
-from pathlib import Path
 
 load_dotenv(".env", override=True)
 
@@ -43,16 +43,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-
     "rest_framework",
     "rest_framework_simplejwt",
     "drf_yasg",
     "corsheaders",
     "django_filters",
-
     "users",
     "diary",
-
 ]
 
 MIDDLEWARE = [
