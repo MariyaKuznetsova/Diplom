@@ -15,6 +15,7 @@ class BootstrapFormMixin:
 
 
 class RecordForm(BootstrapFormMixin, forms.ModelForm):
+    """Форма для создания записи в дневник"""
     class Meta:
         model = Record
         fields = ["date", "contents", "image", "owner"]

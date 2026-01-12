@@ -7,7 +7,7 @@
                     <div class="col-sm-4 offset-md-1 py-4">
                         <ul class="list-unstyled">
                             {% if user.is_authenticated %}
-                            <li><a href="{% url 'diary:record_list' %}" class="text-white">О себе</a></li>
+                            <li><a href="{% url 'users:profile' %}" class="text-white">О себе</a></li>
                             <li><a href="{% url 'diary:record_list' %}" class="text-white">Список записей дневника</a></li>
                             <a href="#" onclick="document.getElementById('logout-form').submit(); return false;">Выйти</a>
                             <form id="logout-form" method="POST" action="{% url 'users:logout' %}" style="display: none;">

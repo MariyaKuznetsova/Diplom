@@ -17,12 +17,13 @@
                                 <a class="btn btn-primary" href="{% url 'diary:record_detail' record.pk %}" role="article">Посмотреть</a>
                                 <a class="btn btn-primary" href="{% url 'diary:record_update' record.pk %}" role="article">Редактировать</a>
                                 <a class="btn btn-danger" href="{% url 'diary:record_delete' record.pk %}" role="article">Удалить</a>
-                                {% endif %}
+
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+            {% endif %}
             {% endfor %}
         </div>
     </div>

@@ -64,7 +64,7 @@
         </li>
         </ul>
     </div>
-    <header data-bs-theme="blue">
+    <header data-bs-theme="dark">
     {% include 'diary/includes/inc_menu.html' %}
     </header>
     <main>
@@ -76,7 +76,7 @@
                     <p class="lead text-body-secondary">Привет, я рад, что ты снова со мной и хочу больше узнать о тебе, напиши как прошел твой день.</p>
                     <a class="btn btn-primary" href="{% url 'diary:record_create' %}" role="article">Создать</a>
                     {% csrf_token %}
-                            <p class="lead text-body-secondary">Добро пожаловать, {{ user.nik }}!</p>
+                            <p class="lead fs-2 fw-semibold text-decoration-underline text-success">Добро пожаловать, {{ user.nik }}!</p>
                     {% endif %}
 
                 </div>
