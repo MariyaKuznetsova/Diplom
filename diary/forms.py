@@ -19,7 +19,7 @@ class RecordForm(BootstrapFormMixin, forms.ModelForm):
 
     class Meta:
         model = Record
-        fields = ["date", "contents", "image", "owner"]
+        fields = ["date", "contents", "image"]
         widgets = {
             "date": forms.DateInput(attrs={"type": "date"}),
         }
