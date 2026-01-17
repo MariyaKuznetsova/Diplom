@@ -62,7 +62,7 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run tests
-      run: docker compose run --rm web python manage.py test
+      run: docker compose run --rm -e SECRET_KEY="${{ env.SECRET_KEY }}" -e DEBUG=True web python manage.py test
 
   build:
     needs: test
