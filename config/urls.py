@@ -24,4 +24,9 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("diary.urls", namespace="diary")),
     path("users/", include("users.urls", namespace="users")),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+]
+
+# Обслуживание статических файлов
+# В Docker контейнере обслуживаем статику через Django
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

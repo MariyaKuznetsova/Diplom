@@ -1,7 +1,7 @@
 FROM python:3.12
 
 # Устанавливаем рабочую директорию в контейнере
-WORKDIR /app
+WORKDIR /code
 
 RUN apt-get update \
     && apt-get install -y gcc libpq-dev \
@@ -15,7 +15,7 @@ RUN pip install -r requirements.txt
 # Копируем остальные файлы проекта в контейнер
 COPY . .
 
-RUN mkdir -p /app/media
+RUN mkdir -p /code/media
 
 # Открываем порт 8000 для взаимодействия с приложением
 EXPOSE 8000
