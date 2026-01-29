@@ -75,6 +75,7 @@
                     <h1 class="fw-light">Мой личный дневник</h1>
                     <p class="lead text-body-secondary">Привет, я рад, что ты снова со мной и хочу больше узнать о тебе, напиши как прошел твой день.</p>
                     <a class="btn btn-primary" href="{% url 'diary:record_create' %}" role="article">Создать</a>
+                    <a class="btn btn-primary" href="{% url 'diary:search_results' %}" role="article">Найти</a>
                     {% csrf_token %}
                             <p class="lead fs-2 fw-semibold text-decoration-underline text-success">Добро пожаловать, {{ user.nik }}!</p>
                     {% endif %}

@@ -37,3 +37,15 @@ class RecordForm(BootstrapFormMixin, forms.ModelForm):
                 "placeholder": "Опишите подробнее, запоминающиеся событие",
             }
         )
+
+
+class SearchForm(BootstrapFormMixin, forms.ModelForm):
+    """Форма для поиска записи в дневнике"""
+
+    query = forms.DateField(
+        widget=forms.DateInput(format="%Y-%m-%d", attrs={"type": "date"})
+    )
+
+    class Meta:
+        model = Record
+        fields = ["query"]

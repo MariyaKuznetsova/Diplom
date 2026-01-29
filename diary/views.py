@@ -1,15 +1,11 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import HttpResponseForbidden
+from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import (
-    CreateView,
-    DeleteView,
-    DetailView,
-    ListView,
-    UpdateView,
-)
+from django.views.generic import (CreateView, DeleteView, DetailView, ListView,
+                                  UpdateView)
 
-from diary.forms import RecordForm
+from diary.forms import RecordForm, SearchForm
 from diary.models import Record
 
 
@@ -73,3 +69,27 @@ class RecordDeleteView(LoginRequiredMixin, DeleteView):
         if not obj.owner == self.request.user:
             return HttpResponseForbidden("У вас нет прав для удаление этой записи")
         return obj
+
+
+def post_search(request):
+    form = SearchForm(request.GET)
+    query = None
+    results = []
+    if "query" in request.GET:
+        form = SearchForm(request.GET)
+        if form.is_valid():
+            query = form.cleaned_data["query"]
+            results = Record.objects.filter(date=query)  # Поиск по заголовку
+    return render(
+        request,
+        "diary/search_results.html",
+        {"form": form, "query": query, "results": results},
+    )
+
+    #
+    # query = request.GET.get('query')
+    # if query:
+    #     results = Record.objects.filter(date=query)
+    # else:
+    #     results = Record.objects.none()
+    # return render(request, 'diary/search_results.html', {'form': form, 'results': results})
