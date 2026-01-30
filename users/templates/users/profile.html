@@ -1,0 +1,18 @@
+{% extends 'diary/base.html' %}
+{% load my_tags %}
+{% block content %}
+<div class="container mt-5">
+    <div class="p-5 mb-2 bg-primary-subtle text-primary-emphasis">
+        <div class="col-4">
+            <p>Ваш телефон: {{ object.phone_number }}</p>
+            <p>Ваша фотография: {{ object.avatar }}</p>
+            <p>Ваша страна: {{ object.country }}</p>
+            <p>Ваша город: {{ object.city }}</p>
+            <p>О себе: {{ object.myself }}</p>
+        <a href="{% url 'users:profile_edit' %}">
+            <button class="btn btn-primary">Редактировать</button>
+
+        </a>
+    </div>
+</div>
+{% endblock %}

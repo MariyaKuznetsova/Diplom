@@ -1,0 +1,32 @@
+<div class="collapse text-bg-dark" id="navbarHeader">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-8 col-md-7 py-4">
+                        <p class="fs-1 text-center fst-italic">Мой личный дневник!!!</p>
+                    </div>
+                    <div class="col-sm-4 offset-md-1 py-4">
+                        <ul class="list-unstyled">
+                            {% if user.is_authenticated %}
+                            <li><a href="{% url 'users:profile' %}" class="text-white">О себе</a></li>
+                            <li><a href="{% url 'diary:record_list' %}" class="text-white">Список записей дневника</a></li>
+                            <a href="#" onclick="document.getElementById('logout-form').submit(); return false;">Выйти</a>
+                            <form id="logout-form" method="POST" action="{% url 'users:logout' %}" style="display: none;">
+                                {% csrf_token %}
+                            </form>
+                            {% else %}
+                            <li><a href="{% url 'users:login' %}" class="text-white">Вход</a></li>
+                            <li><a href="{% url 'users:register' %}" class="text-white">Регистрация</a></li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="navbar navbar-dark bg-dark shadow-sm">
+            <div class="container">
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+        </div>
